@@ -60,7 +60,12 @@ const nextConfig: NextConfig = {
         has: [{ type: "host", value: "www.tannerorourke.dev" }],
         destination: "https://tannerorourke.dev/:path*",
         permanent: true,
-      }
+      },
+      // -- Retired project slugs.
+      // Temporary (307) rather than 308: permanent redirect is cached by the browser indefinitely and cannot be walked back.
+      // dynamicParams=false on [project] would otherwise 404 these at the routing layer.
+      { source: "/jepa-mi/:path*", destination: "/chronos/:path*", permanent: false },
+      { source: "/code-lm/:path*", destination: "/nanous/:path*", permanent: false },
     ]
   },
 

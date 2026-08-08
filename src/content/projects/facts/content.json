@@ -1,14 +1,14 @@
 {
-  "pid": "gpt4-factuality",
+  "pid": "facts",
   "live": true,
-  "order": 5,
+  "order": 6,
   "publishedAt": "2026-06-14",
   "updatedAt": "2026-06-21",
   "title": "Cross-Abstractive Alignment in Fact-Checking",
   "indexSubtitle": "A followup analysis to FActScore (Min et al., 2023)  and analysis of recurring patterns where automated fact-checkers get things wrong (*Cross-Abstractive Alignment*).",
   "eyebrow": "Case Study (2025)",
   "thumbnail": {
-    "src": "/content/gpt4-factuality/cross-abstractive-alignment-hero.svg",
+    "src": "/content/facts/cross-abstractive-alignment-hero.svg",
     "alt": "2x2 matrix of fact-checking error categories with example facts in each cell"
   },
 
@@ -22,7 +22,7 @@
 
   "subtitle": "A followup analysis to FActScore ([Min et al., 2023](https://arxiv.org/abs/2305.14251)), we find a recurring pattern where automated fact-checkers get things wrong (what I call cross-abstractive alignment), and relate this back to system-vs-human agreement in a fact-checking environment.",
   "heroImage": {
-    "src": "/content/gpt4-factuality/cross-abstractive-alignment-hero.svg",
+    "src": "/content/facts/cross-abstractive-alignment-hero.svg",
     "alt": "2x2 matrix of fact-checking error categories with example facts in each cell"
   },
   "chips": [
@@ -54,7 +54,7 @@
       "caption": "92 true positives, 97 true negatives, 12 false positives, 20 false negatives. 85.5% accuracy, balanced F1 (0.852 / 0.858).",
       "side": "right",
       "image": {
-        "src": "/content/gpt4-factuality/cm.svg",
+        "src": "/content/facts/cm.svg",
         "alt": "Confusion matrix showing 92 true positives, 97 true negatives, 12 false positives, 20 false negatives"
       }
     },
@@ -79,7 +79,7 @@
       "title": "Takeaways",
       "body": "**Cross-abstractive alignment.** Sorting the 32 errors by hand surfaces a single 2x2 (right): does the *fact* need to be compressed to a few salient tokens, or to a summarized concept? Same question for the *support*. The off-diagonals - where fact and passage live at different abstraction levels - are where things break. Example: *\"Gerhard Fischer is best known for inventing a metal detector\"* - the support proves it across distant sentences, but no single window covers the claim. Entailment = 0.023; false negative. The pattern: an accurate fact-checker has to compress both sides to comparable levels of detail before comparing them. Reframes *build a better NLI model* as *align granularities first*.",
       "image": {
-        "src": "/content/gpt4-factuality/cross-abstractive-alignment.svg",
+        "src": "/content/facts/cross-abstractive-alignment.svg",
         "alt": "2x2 matrix of fact-checking error categories with example facts in each cell"
       },
       "side": "top"

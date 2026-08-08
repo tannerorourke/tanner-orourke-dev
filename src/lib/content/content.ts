@@ -3,11 +3,12 @@ import { join } from 'path';
 
 import type { ProjectContent } from "@/lib/types/project";
 import { home } from "@/content/home";
+import chronos from "@/content/projects/chronos/content.json";
 import fire from "@/content/projects/fire/content.json";
-import gpt4Factuality from "@/content/projects/gpt4-factuality/content.json";
-import codeLM from "@/content/projects/code-lm/content.json";
-import interpretJepa from "@/content/projects/jepa-mi/content.json";
-import negationSnli from "@/content/projects/negation-snli/content.json";
+import firs from "@/content/projects/firs/content.json";
+import nanous from "@/content/projects/nanous/content.json";
+import facts from "@/content/projects/facts/content.json";
+import negation from "@/content/projects/negation/content.json";
 import { SectionTypes } from '@/components/ui/Section';
 import { splitMarkdownSections } from '@/lib/markdown/sections';
 
@@ -40,10 +41,11 @@ function resolveProject(p: ProjectContent): ProjectContent {
 
 const projectList: ProjectContent[] = ([
   fire,
-  gpt4Factuality,
-  codeLM,
-  interpretJepa,
-  negationSnli,
+  facts,
+  nanous,
+  chronos,
+  negation,
+  firs,
 ] as unknown as ProjectContent[])
   .map(resolveProject)
   .filter((p) => p.live)

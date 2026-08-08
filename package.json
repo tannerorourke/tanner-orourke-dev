@@ -43,5 +43,11 @@
     "eslint": "^9",
     "eslint-config-next": "16.0.10",
     "typescript": "^5"
+  },
+  "allowScripts": {
+    "@swc/core@1.15.47": true,
+    "esbuild@0.28.1": true,
+    "sharp@0.34.5": true,
+    "unrs-resolver@1.12.2": true
   }
 }

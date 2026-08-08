@@ -1,14 +1,14 @@
 {
-  "pid": "jepa-mi",
+  "pid": "chronos",
   "live": true,
   "order": 1,
   "publishedAt": "2026-06-14",
   "updatedAt": "2026-06-21",
-  "title": "Anatomy of Surprise: A Full Interpretabliity Suite for Clinical Sequence JEPAs",
-  "indexSubtitle": "Exploring the latent representations of JEPA-class models using classical and novel interpretability techniques.",
+  "title": "Anatomy of Surprise: An Interpretability Suite for Clinical Sequence JEPAs",
+  "indexSubtitle": "Exploring the latent representations of JEPA-class models using sparse autoencoders, linear probes, and manifold geometry.",
   "eyebrow": "Research (ongoing)",
   "thumbnail": {
-    "src": "/content/jepa-mi/jepa-analysis.png",
+    "src": "/content/chronos/jepa-analysis.png",
     "alt": "Diagram of the shared-encoder stop-gradient JEPA architecture, with VICReg loss components annotated."
   },
 
@@ -21,9 +21,9 @@
   "size": 8,
   
   
-  "subtitle": "Introducing MI techniques to Joint Embedding Predictive Architectures trained on clinical encounter sequences. Targeting ML4H 2026.",
+  "subtitle": "Applying mechanistic interpretability techniques to Joint Embedding Predictive Architectures trained on clinical encounter sequences. Testing whether patient state in the encoder's latent space decomposes into features that combine predictably.",
   "heroImage": {
-    "src": "/content/jepa-mi/jepa-analysis.png",
+    "src": "/content/chronos/jepa-analysis.png",
     "alt": "Diagram of the shared-encoder stop-gradient JEPA architecture, with VICReg loss components annotated.",
     "label": "",
     "caption": "[1]. The model predicts embedding $k$ from $k-1$ prior encounters, penalized for representations that collapse, correlate, or fail to predict (VicReg loss).",
