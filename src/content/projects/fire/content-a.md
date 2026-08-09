@@ -42,7 +42,7 @@ Each source arrives in its own frame. Satellite vegetation composites land every
 
 The build reprojects every product onto one shared Washington grid, places each on a common daily time axis under an interpolation rule chosen per variable rather than one rule imposed on everything, and then derives the channels that only become computable once the sources are aligned. Supervision covers the May through October season across 2003 to 2020, which is where Washington's fires actually are.
 
-The cubes come out at three grid spacings, 1km, 2km, and 4km. They carry no train, validation, or test boundary, so my split choice is not baked into them. They live on [Hugging Face](https://huggingface.co/torq1/datasets).
+The cubes come out at three grid spacings, 1km, 2km, and 4km. They carry no train, validation, or test boundary, so my split choice is not baked into them. They live on [Hugging Face](https://huggingface.co/collections/torq1/fire-fusion).
 
 The most defensible thing this project produces may not turn out to be the model. It may be the datacube.
 
