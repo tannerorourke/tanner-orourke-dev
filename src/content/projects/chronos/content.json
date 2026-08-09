@@ -41,7 +41,7 @@
     {
       "type": "block",
       "id": "overview",
-      "body": "[!file](body.md)"
+      "body": "[!file](content-a.md)"
     }
   ]
 }

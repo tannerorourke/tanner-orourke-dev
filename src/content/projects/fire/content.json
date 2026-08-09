@@ -3,105 +3,61 @@
   "live": true,
   "order": 2,
   "publishedAt": "2026-06-14",
-  "updatedAt": "2026-06-21",
-  "title": "Multi-modal wildfire ignition modeling",
-  "indexSubtitle": "Forecasting next-day wildfire ignition in Washington State with a 24-feature multi-modal stack and a CNN-Transformer Fusion model.",
-  "eyebrow": "Research (2025)",
+  "updatedAt": "2026-08-08",
+  "title": "Where the Next Fire Starts",
+  "indexSubtitle": "Is an ignition predictable from what the land, the weather, and the people were doing beforehand? Washington State, 2003 to 2020, on one daily grid.",
+  "eyebrow": "Research (ongoing)",
   "thumbnail": {
-    "src": "/content/fire/ignition_heatmap.png",
-    "alt": "Predicted next-day ignition probability across Washington State"
+    "src": "/content/fire/washington-contour.jpg",
+    "alt": "Shaded contour map of Washington State showing green lowlands, olive high ground through the Cascades, highways, rivers, and labelled cities"
   },
 
 
   "category": "research",
-  "tags": ["pytorch","multi-modal","transformer","cnn","model-training"],
+  "tags": ["pytorch","multi-modal","spatiotemporal","transformer","cnn","model-training","geospatial"],
   "domain": ["environment","spatiotemporal","forecasting"],
-  "method": ["interpretability","evaluation"],
-  "year": 2025,
+  "method": ["model-training","evaluation"],
+  "year": 2026,
   "research_eng": 5,
   "size": 6,
 
 
-  "subtitle": "Forecasting next-day wildfire ignition across Washington from 24 satellite, terrain, and meteorological features through a ConvFormer with physics-aware masking.",
+  "subtitle": "A daily multi-modal datacube over Washington State, and a spatiotemporal model that reads it, asking whether a wildfire ignition is predictable before it happens and from what.",
   "heroImage": {
-    "src": "/content/fire/ignition_heatmap.png",
-    "alt": "Predicted next-day ignition probability across Washington State"
+    "src": "/content/fire/washington-contour.jpg",
+    "alt": "Shaded contour map of Washington State: green lowlands along the coast and Puget Sound, olive and tan high ground through the Cascades and the northeastern ranges, elevation contour lines throughout, red highways, cyan rivers and inland waters, and labelled cities including Seattle, Spokane, Yakima, Olympia and Vancouver.",
+    "caption": "Washington from above, with the Cascade crest splitting a wet, dense west from a dry, open east. Nearly every question in this project is a question about that split.",
+    "captionOnHome": false
   },
   "chips": [
-    { "label": "ConvFormer", "color": "teal" },
+    { "label": "Geospatial", "color": "teal" },
     { "label": "Spatiotemporal", "color": "teal" },
     { "label": "PyTorch", "color": "copper" }
   ],
   "links": [
-    { 
-      "icon": "github", 
-      "alt": "Github", 
-      "href": "https://github.com/tannerorourke/FireFusionNet" 
+    {
+      "icon": "github",
+      "alt": "Github",
+      "href": "https://github.com/tannerorourke/FireFusionNet"
     },
-    { "icon": "pdf", 
-      "text": "Paper", 
-      "href": "/content/fire/Leveraging Multi-Modal Representations With Spatio Temporal Learning for Wildfire Ignition Modeling.pdf", 
-      "download": "Leveraging Multi-Modal Representations With Spatio Temporal Learning for Wildfire Ignition Modeling.pdf" 
+    {
+      "icon": "file-text",
+      "text": "Datasets",
+      "alt": "Published datasets on HuggingFace",
+      "href": "https://huggingface.co/torq1/datasets"
     }
   ],
   "finding": {
-    "body": "Most spatiotemporal fire models run attention over space and time but treat input channels as independent. We investigate adding a third attention axis - over the 24 features themselves - to enable the model to learn which feature combinations actually produce ignitions.",
-    "jumpToId": "features",
-    "jumpToLabel": "See the feature stack"
+    "eyebrow": "The premise",
+    "body": "Western Washington logged 101 fires in the 2023 season. Sixty-six stayed under five acres. Two of them accounted for **83% of everything that burned**. Fire is rare, its damage concentrates in a handful of events, and the seasonal drought outlook does not tell you which handful.",
+    "jumpToId": "the-cold-truth",
+    "jumpToLabel": "Why this is a hard problem"
   },
   "sections": [
     {
       "type": "block",
-      "id": "overview",
-      "title": "Overview",
-      "body": "Western fire seasons are getting longer. Washington's 2020 season alone produced record PM2.5 exposures and a measurable rise in mortality and hospitalizations.\n\nFireFusion forecasts next-day wildfire ignition probability and ignition cause across Washington on a 2 km grid. On a held-out test set the model reaches an **AUPRC of 0.62**, against the **0.08** baseline any random scorer would produce on data where ignitions make up roughly 8% of valid pixels.\n\n85-90% of recent Washington wildfires are human-caused, and ignitions now reach west of the Cascades into the densely-populated Puget Sound corridor."
-    },
-    {
-      "type": "block",
-      "id": "why-hard",
-      "title": "Why ignition is hard to forecast",
-      "body": "Fires are, in data speak, incredibly rare. To make matter's worse, the drivers are heterogeneous and don't compose linearly - one fire can start from a combination of drought and wind, another from lightning in a generally non-burning area, and so on. Indices like the Fosberg FWI condense wind, temperature, and humidity into a single per-station scalar, but ignores topography, fuel state, and the human pressures (transportation corridors, wildland-urban interfaces, recreational patterns) that explain the the large majority of ignitions. A model that fits this domain needs to learn interactions across not only space and time, but the features themselves, and a LOT of them."
-    },
-    {
-      "type": "block",
-      "id": "features",
-      "title": "The 24-feature stack",
-      "accent": "copper",
-      "body": "The input cube is 24 channels deep, spanning five categories that no other fire model combines in one end-to-end system (with the exception of the [SeasFire DataCube](https://arxiv.org/abs/2312.07199), although this operates globally with a 8d temporal resolution, too high an interval for pinpoint next day prediction). Each was derived from raw products into something the model could use.\n\n- **Meteorology.** Daily gridded temperature, humidity, wind speed, 100-hr fuel moisture, and 2/5-day rolling precipitation from gridMET.\n- **Fuels and vegetation.** NDVI (a satellite measure of vegetation greenness) anomaly and LAI (leaf area in m² per m² of ground) from MODIS, plus NLCD canopy cover and fractional impervious surface. LAI uses nearest-neighbor in time to preserve sharp post-fire dropoffs.\n- **Topography.** Elevation and slope from LANDFIRE, with aspect handled as components above.\n- **Human pressure.** Housing density (GPW), the WUI index (wildland-urban interface: where housing borders wildland fuels) and distance-to-WUI from USDA, and distance-to-road from TIGER/Line. Long-tailed variables get `log1p` before standardization.\n- **Fire history and derived priors.** Kernel-density estimators for past lightning and human ignitions, months-since-last-burn from MODIS MCD64A1, a 3x3 rolling mean of recent activity, and the Fosberg FWI. A sinusoidal day-of-year encodes seasonality without learning that day 365 and day 1 are far apart."
-    },
-    {
-      "type": "block",
-      "id": "architecture",
-      "title": "Architecture",
-      "body": "The model is a **ConvFormer**: a CNN encoder followed by three self-attention blocks on three different axes, then a two-head decoder.\n\nEach input batch has a `(B, T, C, H, W)` shape  batch, T lookback days, C feature channels, and an HxW spatial grid. With 24 channels over a 204x200 grid covering Washington.\n\nA residual encoder downsamples spatial extent and lifts the channel dimension into an embedding: `(B, T, C, H, W)` -> `(B, T, D, H', W')`, (embedding dimension D, H' and W' denote downsampled spatial dims. This lets the attention blocks operate on a smaller grid while preserving local geography through skip connections.\n\nThree attention blocks follow, each reshaping the tensor to expose a different axis as the sequence dimension before applying multi-head self-attention.\n\n**Windowed spatial attention.** The (H', W') grid is partitioned into PxP windows (P=4, sized to characteristic topographic scales like a mountain ridge). Within each time window, the P² locations become tokens: `(B, T, D, H', W')` -> `(B, T, P², D)` per window. By sampling 4x4 windows, cost stays linear in pixel count rather than quadratic.\n\n**Channel-mixing attention.** Next, the embedding axis becomes the sequence: `(B, T, D, H', W')` -> `(B, H', W', T, D)`, with MHA over D. In other words, each channel attends to every other channel at the same location and time. Two channels can be informative individually but redundant together (e.g, drought conditions, but no vegatation cover), or weakly informative individually but strongly together (e.g., low rainfall and wind speed).  the attention weights distinguish those cases.\n\n**Temporal attention.** Finally, the time axis: `(B, H', W', T, D)` with MHA over T. Each day's embedding attends to every other day in the lookback window. Temporal attention runs last because day identity has to survive through to the decoder, which reads only `t=T`.\n\nTwo heads share the upsampling path: a binary ignition head producing `(B, 1, H_out, W_out)` and a 4-class cause head producing `(B, 4, H_out, W_out)`. Loss is masked over water, glaciers, currently-burning cells, and out-of-study regions so the model is never penalized for predicting nothing where ignition is physically impossible."
-    },
-    {
-      "type": "2upTextImage",
-      "id": "results",
-      "title": "Results",
-      "body": "FireFusion reaches an AUPRC of **0.62** against an **0.08** no-skill baseline on the held-out test set. The precision-recall curve holds precision near 1.0 from recall 0 to ~0.5: at high-confidence thresholds, every flagged cell is a real ignition, until the model has captured roughly half of them. Past that point, false positives climb quickly  the model is willing to over-flag once it's exhausted the easy cases.",
-      "image": {
-        "src": "/content/fire/auprc.png",
-        "alt": "Precision-recall curve for FireFusion's ignition head versus no-skill baseline"
-      },
-      "side": "right"
-    },
-    {
-      "type": "2upTextImage",
-      "id": "cause-head",
-      "title": "Where the cause head broke down",
-      "body": "The 4-class cause head was a stretch goal that the data didn't quite support. Of 60 true lightning events on the test set the model labeled 10 correctly and pushed 30 into *no ignition*. Human (25/80) and other (15/60) showed the same pattern.\n\nTwo things drive it. First, every wrong call on the binary head propagates to the cause head, and binary precision at the F1-max threshold is already soft. Second, lightning and human ignitions co-locate spatially  the eastern Cascades have both convective activity and recreational corridors  so the channels that should separate them.\n\nThe takeaway is the cause head we hypothesize learned a structural prior over *where* ignition types occur, not a per-event classifier.",
-      "image": {
-        "src": "/content/fire/cause-cm.png",
-        "alt": "Confusion matrix for the 4-class ignition cause head"
-      },
-      "side": "left"
-    },
-    {
-      "type": "block",
-      "id": "takeaways",
-      "title": "Takeaways",
-      "body": "- **Efficient information compression** This was a learning lesson in the scaling laws, and one of the first experiments I Since attention scales quadratically in cells per window. 50m resolution to catch fuel breaks and narrow canyons wasn't feasible on a single RTX 3070  I shipped at 2km and ran with `batch_size=2`. Next time I'd design hierarchical attention from the start: coarse globally, fine in high-risk regions, instead of uniform windows over the whole grid.\n- **Use a stratified hold-out set.** I split the test set temporally on the WA grid, which probes generalization across years but not across ecoregions. A more sound approach would have been to randomly sample pixels across time, ecoregion, and space.\n- **Don't pretend an 8% positive rate is balanced.** I oversampled positive windows and weighted the binary loss ~6000:1. Without it the model collapses to *no* and the AUPRC story disappears.\n- **Multi-task only when the labels can carry it.** The cause head added value during architecture exploration but didn't earn its keep on the held-out set. Next time I'd train the binary head solo, then bolt cause on as a frozen-encoder probe."
+      "id": "content-a",
+      "body": "[!file](content-a.md)"
     }
   ]
 }

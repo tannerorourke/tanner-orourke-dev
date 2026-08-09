@@ -2,23 +2,52 @@ export function slugify(s: string): string {
   return s.toLowerCase().trim().replace(/[^\w]+/g, '-');
 }
 
-export type MarkdownHeadingSection = { id: string; title: string; body: string };
+export type MarkdownHeadingSection = {
+  id: string;
+  title: string;
+  body: string;
+  accent?: "copper";
+};
+
+// -- One trailing `[!key](value)` annotation, anchored to the end of the heading.
+const ANNOTATION = /\s*\[!(\w+)\]\(([^)]*)\)$/;
+
+// Peels every trailing annotation off a heading, right to left, leaving the
+// display title. Order between annotations does not matter.
+function parseHeading(raw: string): { title: string; attrs: Record<string, string> } {
+  const attrs: Record<string, string> = {};
+  let title = raw.trim();
+
+  for (let m = title.match(ANNOTATION); m; m = title.match(ANNOTATION)) {
+    attrs[m[1]] = m[2].trim();
+    title = title.replace(ANNOTATION, '').trim();
+  }
+
+  return { title, attrs };
+}
 
 // Splits a markdown document on '## ' headings, one section per heading.
-// A heading may pin an explicit id via a trailing `[!id](custom-slug)` annotation;
-// otherwise the id is slugified from the heading text. Content before the first
-// heading (e.g. a leading '# Title') is dropped.
+// A heading carries its non-body section fields as trailing annotations:
+// `[!id](custom-slug)` pins the anchor id, which otherwise slugifies from the
+// heading text, and `[!accent](copper)` accents the section title. Content
+// before the first heading (e.g. a leading '# Title') is dropped.
 export function splitMarkdownSections(markdown: string): MarkdownHeadingSection[] {
   const sections: MarkdownHeadingSection[] = [];
 
   for (const line of markdown.split('\n')) {
     const heading = line.match(/^##\s+(.+)/);
     if (heading) {
-      const raw = heading[1].trim();
-      const idMatch = raw.match(/^(.*?)\s*\[!id\]\(([^)]+)\)\s*$/);
-      const title = idMatch ? idMatch[1].trim() : raw;
-      const id = idMatch ? idMatch[2].trim() : slugify(title);
-      sections.push({ id, title, body: '' });
+      const { title, attrs } = parseHeading(heading[1]);
+      if (attrs.accent && attrs.accent !== "copper")
+        throw new Error(`Unknown section accent "${attrs.accent}" on heading "${title}"`);
+      const accent = attrs.accent as MarkdownHeadingSection["accent"];
+
+      sections.push({
+        id: attrs.id ?? slugify(title),
+        title,
+        body: '',
+        ...(accent && { accent }),
+      });
     } else if (sections.length) {
       const last = sections[sections.length - 1];
       last.body += (last.body ? '\n' : '') + line;
