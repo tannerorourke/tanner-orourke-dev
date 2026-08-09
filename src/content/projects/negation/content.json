@@ -4,7 +4,7 @@
   "order": 5,
   "publishedAt": "2026-06-14",
   "updatedAt": "2026-06-21",
-  "title": "Syntactic Negation Probing",
+  "title": "Negation is Not Enbough: A Deeper Analysis Into Premise Negation in SNLI",
   "indexSubtitle": "If 'A room is never empty without music', then is 'The room empty with music'? Your model might have a problem with this.",
   "eyebrow": "Case Study (2025)",
   "thumbnail": {
