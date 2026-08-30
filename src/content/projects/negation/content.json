@@ -1,0 +1,102 @@
+{
+  "pid": "negation",
+  "live": true,
+  "order": 5,
+  "publishedAt": "2026-06-14",
+  "updatedAt": "2026-06-21",
+  "title": "Negation is Not Enbough: A Deeper Analysis Into Premise Negation in SNLI",
+  "indexSubtitle": "If 'A room is never empty without music', then is 'The room empty with music'? Your model might have a problem with this.",
+  "eyebrow": "Case Study (2025)",
+  "thumbnail": {
+    "src": "/content/negation/hugging-face.jpg",
+    "alt": ""
+  },
+
+
+  "category": "case-studies",
+  "tags": ["pytorch","huggingface","transformer","pretrained","intervention","analysis"],
+  "domain": ["snli","nlp"],
+  "method": ["evaluation"],
+  "year": 2026,
+  "research_eng": 2,
+  "size": 4,
+  
+  
+  "subtitle": "A dependency-parser-driven analysis of ELECTRA-small's reliance on negation cue location in SNLI.",
+  "chips": [
+    { "label": "NLP", "color": "teal" },
+    { "label": "SNLI", "color": "teal" },
+    { "label": "PyTorch", "color": "copper" }
+  ],
+  "links": [
+    { "icon": "github", "href": "https://github.com/tannerorourke/aug-lexical-negation" },
+    { "icon": "pdf", "text": "Paper", "href": "/content/negation/negation-is-not-enough-orourke-2025.pdf", "download": "negation-is-not-enough-orourke-2025.pdf" }
+  ],
+  "sections": [
+    {
+      "type": "block",
+      "id": "content-a",
+      "body": "[!file](content-a.md)"
+    },
+    {
+      "type": "Image",
+      "id": "loop-diagram",
+      "title": "The experiment loop",
+      "src": "/content/negation/npas-experiment-loop.svg",
+      "alt": "Vertical flow diagram showing SNLI feeding ELECTRA-small fine-tuning, slice analysis along six axes, diagnosis surfacing premise-negation failure, two intervention boxes (contrast augmentation and slice-aware reweighting) feeding back into a retraining step",
+      "caption": "The full project as a loop: fine-tune, slice, diagnose, intervene, retrain. Slice analysis runs along six axes - the negation pattern, lexical overlap, NPAS regions, label distributions, NRI, and per-slice confusion matrices."
+    },
+    {
+      "type": "block",
+      "id": "content-b",
+      "body": "[!file](content-b.md)"
+    },
+    {
+      "type": "Image",
+      "id": "npas-diagram",
+      "title": "NPAS applied to a single sentence",
+      "src": "/content/negation/npas-pipeline-room-music.svg",
+      "alt": "Diagram showing the sentence 'The room is never empty without music' tokenized with dependency labels and NPAS region assignments for every token. Negation cues 'never' and 'without' are highlighted in coral with arcs connecting them to their syntactic anchors 'is' and 'music'. The region labels under is and music are coral; the labels under other tokens are faded gray. Below, a panel shows the three cue-detection strategies, with token-rule matching highlighted as the one that fired. The output is the feature flags prem_neg_root and prem_neg_locative.",
+      "caption": "Walking the pipeline on 'The room is never empty without music.' Two cues fire (never and without), each anchored on a different token via different dependency relations, lighting up two of the seven syntactic regions."
+    },
+    {
+      "type": "Image",
+      "id": "table1",
+      "title": "Baseline accuracy by negation pattern",
+      "src": "/content/negation/table1-accuracy-by-pattern.jpg",
+      "alt": "Table showing accuracy across negation patterns and lexical overlap buckets",
+      "caption": "Out of 10,000 SNLI validation examples, only 208 contain explicit negation in the premise. Accuracy on premise-negation examples drops to 75.4% - well below the 85.4% overall baseline."
+    },
+    {
+      "type": "block",
+      "id": "content-c",
+      "body": "[!file](content-c.md)"
+    },
+    {
+      "type": "Image",
+      "id": "table3",
+      "title": "NRI for CONTRADICTION: hypothesis vs. premise",
+      "src": "/content/negation/table3-nri-for-contradiction.jpg",
+      "alt": "NRI table comparing hypothesis-negation and premise-negation reliance for the contradiction label",
+      "caption": "Hypothesis-negation NRI is small (0.025) - the model mirrors a real dataset coupling. Premise-negation NRI is four times larger (0.099) and points the wrong way: gold labels for premise-negation are roughly balanced, yet the model predicts contradiction 40% of the time."
+    },
+    {
+      "type": "block",
+      "id": "content-d",
+      "body": "[!file](content-d.md)"
+    },
+    {
+      "type": "Image",
+      "id": "table4",
+      "title": "Results: baseline vs. augmented",
+      "src": "/content/negation/table4-baseline-vs-augmented.jpg",
+      "alt": "Comparison of baseline and augmented model accuracy across negation patterns",
+      "caption": "Augmentation improved overall accuracy (85.4% -> 86.2%) and dramatically improved the BOTH slice (50% -> 85%), but PREM_ONLY accuracy fell from 75.7% to 66.7% on a larger, harder evaluation slice. The premise-side shortcut survived."
+    },
+    {
+      "type": "block",
+      "id": "content-e",
+      "body": "[!file](content-e.md)"
+    }
+  ]
+}

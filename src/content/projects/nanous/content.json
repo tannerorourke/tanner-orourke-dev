@@ -1,0 +1,77 @@
+{
+  "pid": "nanous",
+  "live": true,
+  "order": 4,
+  "publishedAt": "2025-06-20",
+  "updatedAt": "2026-08-07",
+  "title": "Nanous",
+  "indexSubtitle": "A guided demonstration through building a coding-optimized LLaMA-style LM and byte-level BPE tokenizer, carried from raw corpus all the way through preference tuning.",
+  "eyebrow": "Walkthrough",
+  "thumbnail": {
+    "src": "/content/nanous/transformer.png",
+    "alt": "Build a GPT-style LM and BPE tokenizer"
+  },
+
+
+  "category": "case-studies",
+  "tags": ["pytorch","huggingface","transformer","walkthrough","model-training","bpe"],
+  "domain": ["nlp"],
+  "method": ["modeling"],
+  "year": 2026,
+  "research_eng": 5,
+  "size": 4,
+
+
+  "subtitle": "Five notebooks that build a ~123M-parameter LLaMA-style Python code model with nothing pre-built: a 7-source corpus, a byte-level BPE tokenizer written from scratch, a modern decoder assembled part by part, and a post-training stack that grades itself by running the code it writes.",
+  "chips": [
+    { "label": "Walkthrough", "color": "teal" },
+    { "label": "PyTorch", "color": "copper" }
+  ],
+  "links": [
+    {
+      "icon": "github",
+      "alt": "Github",
+      "href": "https://github.com/tannerorourke/nanocoder"
+    },
+    {
+      "icon": "colab",
+      "alt": "Start on Colab",
+      "href": "https://colab.research.google.com/drive/1nwCKzG2hFeQyrmINdJxji_f_vJVf9AUv?usp=sharing"
+    }
+  ],
+  "showToc": true,
+  "sections": [
+    {
+      "type": "block",
+      "id": "content-a",
+      "body": "[!file](content-a.md)"
+    },
+    {
+      "type": "Stats",
+      "id": "at-a-glance",
+      "stats": [
+        {
+          "value": "122.7M",
+          "label": "parameters"
+        },
+        {
+          "value": "49,152",
+          "label": "tokenizer vocab"
+        },
+        {
+          "value": "2,048",
+          "label": "context length"
+        },
+        {
+          "value": "7",
+          "label": "pretraining sources"
+        }
+      ]
+    },
+    {
+      "type": "block",
+      "id": "content-b",
+      "body": "[!file](content-b.md)"
+    }
+  ]
+}

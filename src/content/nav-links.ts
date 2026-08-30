@@ -68,7 +68,7 @@ export const LINKS: Record<string, NavLink> = {
     type: "link-cv",
     iconName: "file-text", 
     text: "CV (PDF)", alt: "Download CV",
-    href: "TannerORourke-Resume.pdf", target: "_blank",
+    href: "/TannerORourke-Resume.pdf", target: "_blank",
     tooltipText: "Download CV"
   },
   repo: {

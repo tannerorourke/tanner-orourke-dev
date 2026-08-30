@@ -1,0 +1,94 @@
+{
+  "pid": "facts",
+  "live": true,
+  "order": 6,
+  "publishedAt": "2026-06-14",
+  "updatedAt": "2026-06-21",
+  "title": "Cross-Abstractive Alignment in Fact-Checking",
+  "indexSubtitle": "A followup analysis to FActScore (Min et al., 2023)  and analysis of recurring patterns where automated fact-checkers get things wrong (*Cross-Abstractive Alignment*).",
+  "eyebrow": "Case Study (2025)",
+  "thumbnail": {
+    "src": "/content/facts/cross-abstractive-alignment-hero.svg",
+    "alt": "2x2 matrix of fact-checking error categories with example facts in each cell"
+  },
+
+  "category": "case-studies",
+  "tags": ["pytorch","deberta","pretrained","fact-checking", "analysis"],
+  "domain": ["nlp"],
+  "method": ["evaluation"],
+  "year": 2025,
+  "research_eng": 1,
+  "size": 3,
+
+  "subtitle": "A followup analysis to FActScore ([Min et al., 2023](https://arxiv.org/abs/2305.14251)), we find a recurring pattern where automated fact-checkers get things wrong (what I call cross-abstractive alignment), and relate this back to system-vs-human agreement in a fact-checking environment.",
+  "heroImage": {
+    "src": "/content/facts/cross-abstractive-alignment-hero.svg",
+    "alt": "2x2 matrix of fact-checking error categories with example facts in each cell"
+  },
+  "chips": [
+    { "label": "NLP" },
+    { "label": "DeBERTa" },
+    { "label": "PyTorch", "color": "copper" }
+  ],
+  "links": [
+    { "icon": "github", "href": "https://github.com/tannerorourke/gpt-fact-checker" }
+  ],
+  "sections": [
+    {
+      "type": "block",
+      "id": "content-a",
+      "body": "[!file](content-a.md)"
+    },
+    {
+      "type": "2upTextImage",
+      "id": "results",
+      "title": "Results",
+      "body": "Every false negative missed by failing the absolute entailment threshold, never by failing the win gap. The model wasn't borderline-uncertain on its misses - it was confidently wrong, often predicting entailment under 0.05 when the gold was S. False positives split roughly in half between high-confidence wrong on detail mismatches (entailment >= 0.95) and threshold-skirting calls just above 0.55.",
+      "caption": "92 true positives, 97 true negatives, 12 false positives, 20 false negatives. 85.5% accuracy, balanced F1 (0.852 / 0.858).",
+      "side": "right",
+      "image": {
+        "src": "/content/facts/cm.svg",
+        "alt": "Confusion matrix showing 92 true positives, 97 true negatives, 12 false positives, 20 false negatives"
+      }
+    },
+    {
+      "type": "Stats",
+      "id": "stats",
+      "stats": [
+        {
+          "value": "85.5%",
+          "label": "per-fact accuracy"
+        },
+        {
+          "value": "+6.3 pp",
+          "label": "over TF-IDF baseline"
+        },
+        {
+          "value": "3.6 pp",
+          "label": "FActScore gap vs. human"
+        }
+      ]
+    },
+    {
+      "type": "block",
+      "id": "content-b",
+      "body": "[!file](content-b.md)"
+    },
+    {
+      "type": "2upTextImage",
+      "id": "takeaways",
+      "title": "Takeaways",
+      "body": "**Cross-abstractive alignment.** Sorting the 32 errors by hand surfaces a single 2x2 (right): does the *fact* need to be compressed to a few salient tokens, or to a summarized concept? Same question for the *support*. The off-diagonals - where fact and passage live at different abstraction levels - are where things break. Example: *\"Gerhard Fischer is best known for inventing a metal detector\"* - the support proves it across distant sentences, but no single window covers the claim. Entailment = 0.023; false negative. The pattern: an accurate fact-checker has to compress both sides to comparable levels of detail before comparing them. Reframes *build a better NLI model* as *align granularities first*.",
+      "image": {
+        "src": "/content/facts/cross-abstractive-alignment.svg",
+        "alt": "2x2 matrix of fact-checking error categories with example facts in each cell"
+      },
+      "side": "top"
+    },
+    {
+      "type": "block",
+      "id": "content-c",
+      "body": "[!file](content-c.md)"
+    }
+  ]
+}

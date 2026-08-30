@@ -150,7 +150,7 @@ export function StatsSection({ s }: { s: SectionStats }) {
       {s.stats.map((s, i) => (
         <li key={i} className={sty.statItem}>
           <Markdown
-            textProps={{ as: "h4", variant: "titleXs", className: sty.statValue }}
+            textProps={{ as: "p", variant: "titleXs", className: sty.statValue }}
             value={s.value}
           />
           <Eyebrow>{s.label}</Eyebrow>

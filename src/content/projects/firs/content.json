@@ -1,0 +1,85 @@
+{
+  "pid": "firs",
+  "live": true,
+  "order": 3,
+  "publishedAt": "2026-08-07",
+  "updatedAt": "2026-08-07",
+  "title": "Cross-Format Representational Similarity Measures Output Form, Not Knowledge",
+  "indexSubtitle": "Build the obvious metric for 'did the model know it, or did the options do the work?' Then watch it score correct answers lower than wrong ones.",
+  "eyebrow": "Research (2026)",
+  "thumbnail": {
+    "src": "/content/firs/paraphrase-gap.png",
+    "alt": "Strip plot of FIRS scores for three groups of open-ended answers, with correct paraphrases scoring lowest"
+  },
+
+
+  "category": "research",
+  "tags": ["pytorch","transformer-lens","gemma","mechanistic-interpretability","residual-stream","evaluation","analysis"],
+  "domain": ["nlp","interpretability","benchmarking"],
+  "method": ["evaluation","interpretability"],
+  "year": 2026,
+  "research_eng": 2,
+  "size": 5,
+
+
+  "subtitle": "*Cross-Format Representational Similarity Measures Output Form, Not Knowledge: A Negative Result on Diagnosing Format Exploitation.* A construct-validity falsification of the cosine-similarity metric you would reach for first, run on 500 stratified MMLU questions in Gemma-2-2B.",
+  "heroImage": {
+    "src": "/content/firs/paraphrase-gap.png",
+    "alt": "Strip plot of FIRS scores for three disjoint groups of 5-shot open-ended answers: verbatim correct at mean 0.641, correct paraphrases at 0.538, and judge-confirmed incorrect at 0.577",
+    "caption": "The result that ends the metric. Correct paraphrases - answers like *Masters and Johnson* for *William Masters and Virginia Johnson* - are the one group where the model demonstrably knew the answer without options. They score **lowest of the three**, below the answers that are simply wrong.",
+    "captionOnHome": false
+  },
+  "chips": [
+    { "label": "Mechanistic Interpretability", "color": "teal" },
+    { "label": "MMLU", "color": "teal" },
+    { "label": "TransformerLens", "color": "copper" }
+  ],
+  "links": [
+    { "icon": "github", "alt": "Github", "href": "https://github.com/tannerorourke/format-invariant-benchmarking" },
+    {
+      "icon": "pdf",
+      "text": "Paper",
+      "href": "/content/firs/firs-orourke-2026.pdf",
+      "download": "firs-orourke-2026.pdf"
+    }
+  ],
+  "finding": {
+    "body": "The headline correlation swings from AUC 0.698 to 0.530 on *identical activations*, depending only on whether 'correct' requires the verbatim gold string or accepts a paraphrase of it. Nothing about the model, the prompts, or the representations changed between those two numbers.",
+    "eyebrow": "The trap",
+    "jumpToId": "scorer",
+    "jumpToLabel": "How a scoring rule manufactures an effect"
+  },
+  "sections": [
+    {
+      "type": "block",
+      "id": "content-a",
+      "body": "[!file](content-a.md)"
+    },
+    {
+      "type": "Image",
+      "id": "diagnostics",
+      "title": "Diagnostics that need no labels",
+      "src": "/content/firs/template-dominance.png",
+      "alt": "Two-panel figure. Left: bar chart of mean cosine for same-template mcq vs mcq_shuffle (0.980 at 0-shot, 0.971 at 5-shot), cross-template mcq vs oe (0.703, 0.582), and cross-template with the correct option gutted, oe vs mcq_nota (0.705, 0.575). Right: scatter of option fraction of the MCQ prompt against FIRS, correlation r = -0.531.",
+      "caption": "**Left:** switching template moves the mean cosine by 0.28 to 0.39. Destroying the correct option's text moves it by 0.002. FIRS correlates with its own NOTA variant at 0.988. **Right:** the fraction of the prompt occupied by option tokens predicts FIRS at $r = -0.531$, explaining 27-28% of its variance. A knowledge signature should not be readable off how long the options are."
+    },
+    {
+      "type": "block",
+      "id": "content-b",
+      "body": "[!file](content-b.md)"
+    },
+    {
+      "type": "Image",
+      "id": "layers",
+      "title": "The failure is visible at every layer",
+      "src": "/content/firs/layer-profile.png",
+      "alt": "Two panels, 0-shot and 5-shot, plotting median cosine similarity with IQR bands across all 26 layers for three comparisons: mcq vs mcq_shuffle stays near 1.0, while mcq vs oe (FIRS) and oe vs mcq_nota descend together and lie on top of each other.",
+      "caption": "The FIRS curve and its option-gutted variant are indistinguishable at every depth, in both regimes, while the same-template comparison never leaves the top of the plot. The shaded band is the 50-80% aggregation window. There is no better layer to read - the separation is template, not content."
+    },
+    {
+      "type": "block",
+      "id": "content-c",
+      "body": "[!file](content-c.md)"
+    }
+  ]
+}
