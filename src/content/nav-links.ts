@@ -75,7 +75,7 @@ export const LINKS: Record<string, NavLink> = {
     type: "link",
     iconName: "code-brackets", 
     text: "GitHub Repo", alt: "View Source",
-    href: "https://github.com/tannerorourke/vault",
+    href: "https://github.com/tannerorourke/tanner-orourke-dev",
     target: "_blank",
     tooltipText: "View Source"
   }
