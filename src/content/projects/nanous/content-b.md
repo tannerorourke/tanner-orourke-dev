@@ -81,6 +81,6 @@ The scope is narrow on purpose too. NanoCoder reads English and writes Python, a
 
 Get started with the [Introduction](https://colab.research.google.com/drive/1nwCKzG2hFeQyrmINdJxji_f_vJVf9AUv?usp=sharing), or go straight to [NanoCoder 1: Source Data](https://colab.research.google.com/drive/1kw-R7hznFjHwpF3UYg7zFcp4VUdCveVR?usp=sharing) and start building.
 
-The package and all six notebooks live on [GitHub](https://github.com/tannerorourke/NanoCoder) - fork it and read the notebooks alongside the modules, which is how they are meant to be used. The finished weights are on HuggingFace: [NanoCoder-123M](https://huggingface.co/torq1/NanoCoder-123M) for the pretrained base, and [NanoCoder-123M-Instruct](https://huggingface.co/torq1/NanoCoder-123M-Instruct) for the instruction-tuned one.
+The package and all six notebooks live on [GitHub](https://github.com/tannerorourke/nanocoder) - fork it and read the notebooks alongside the modules, which is how they are meant to be used. The finished weights are on HuggingFace: [NanoCoder-123M](https://huggingface.co/torq1/NanoCoder-123M) for the pretrained base, and [NanoCoder-123M-Instruct](https://huggingface.co/torq1/NanoCoder-123M-Instruct) for the instruction-tuned one.
 
 If you use any of this to teach, please credit me or reach out. I would love to hear where it ended up.

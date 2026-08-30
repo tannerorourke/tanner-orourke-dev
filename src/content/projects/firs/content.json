@@ -35,7 +35,7 @@
     { "label": "TransformerLens", "color": "copper" }
   ],
   "links": [
-    { "icon": "github", "alt": "Github", "href": "https://github.com/tannerorourke/Format-Invariant-Benchmarking" },
+    { "icon": "github", "alt": "Github", "href": "https://github.com/tannerorourke/format-invariant-benchmarking" },
     {
       "icon": "pdf",
       "text": "Paper",
