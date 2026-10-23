@@ -8,12 +8,12 @@ I built a Claude Code plugin that answers that question for backcountry travel i
 
 ## How it works [!id](how)
 
-1. First, bundle each day of a trip's trailhead and high point, finds the state, NWS office and grid cell, avalanche zone (for winter trips), land units that contain the trail, nearest SNOTEL stations, river gauges, and webcams by distance. Each buyndle contains forecast URLs, the permit systems in window, the sun times, and the curated filled in map links.
-2. Using the bundle as context, run six agents in parallel, each owning a slice of the decision:
+1. First, bundle each day of a trip's trailhead and high point, finds the state, NWS office and grid cell, avalanche zone (for winter trips), land units that contain the trail, nearest SNOTEL stations, river gauges, and webcams by distance. Each bundle contains forecast URLs, the permit systems in window, the sun times, and the curated filled in map links.
+2. Using the bundle as context, run six agents in parallel, each owning a key decision factor:
 - Access reads roads, gates, permits, and fire.
 - Sky reads the forecast, the discussion, alerts, and smoke.
 - Ground reads trail conditions, crossings, glacier state, and trip reports.
 - Snow reads avalanche products and telemetry and lays the problem types over the route's own slope angles and aspects.
 - Clock computes pace, daylight, and turnaround from the route stats.
 - Contingency covers bailouts, coverage, and search and rescue.
-1. An Opus agent synthesizes the 6 reports using a seven-step protocol that weighs the reports together, taking into account strict No-Go use cases. It provides a Go/No-Go verdict that a critic then checks to ensure sound reasoning, sending back for at most one revision.
+3. An Opus agent synthesizes the 6 reports using a seven-step protocol that weighs the reports together, taking into account strict No-Go use cases. It provides a Go/No-Go verdict that a critic then checks to ensure sound reasoning, sending back for at most one revision.

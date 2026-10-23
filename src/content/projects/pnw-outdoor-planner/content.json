@@ -4,9 +4,9 @@
   "order": 2,
   "publishedAt": "2026-10-22",
   "updatedAt": "2026-10-22",
-  "title": "A Go/No-Go Verdict for Cascades Trips, From Six Research Agents and Hard Stops in Code",
-  "indexSubtitle": "A Claude Code plugin that turns a pinned-down itinerary into one sourced verdict. Its first real run said Wait, and said what would flip it.",
-  "eyebrow": "Tooling (2026)",
+  "title": "PNW Outdoor Planner",
+  "indexSubtitle": "A Claude Code plugin that turns a pinned-down itinerary into one sourced verdict. A Go/No-Go Verdict for Cascades Trips, From Six Research Agents and Hard Stops in Code",
+  "eyebrow": "Plugin (2026)",
   "thumbnail": {
     "src": "/content/pnw-outdoor-planner/pipeline.svg",
     "alt": "Pipeline from itinerary through resolver, six research agents, hard stops, synthesizer and critic to a verdict"
@@ -20,11 +20,11 @@
   "research_eng": 5,
   "size": 3,
 
-  "subtitle": "A Claude Code plugin for Washington, Oregon, Idaho, and the British Columbia fringe. A deterministic resolver picks the sources for each day, six agents read them, six hard stops are applied in code, and a synthesizer writes the verdict with its reasoning chain, what would flip it, and every source with its as-of.",
+  "subtitle": "A Claude Code plugin for planning backcountry trips in Washington, Oregon, Idaho, and the British Columbia.",
   "heroImage": {
     "src": "/content/pnw-outdoor-planner/pipeline.svg",
     "alt": "Pipeline from itinerary through resolver, six research agents, hard stops, synthesizer and critic to a verdict",
-    "caption": "One run. The resolver is plain Python and decides which sources each day owes. Six agents read in parallel and return readings, each with a source and an as-of. Hard stops are evaluated from their structured signals and set a floor the verdict cannot rise above. The synthesizer weighs what is left, and a critic sends it back once if a reading went missing.",
+    "caption": "Deterministic Python solver decides per-day sources. Six agents return readings in parallel, each with a source and an as-of. Hard stops are evaluated from their structured signals and set a verdict floor. The synthesizer weighs what is left to generate a Go/No-Go verdict, and a critic sends it back once if a reading went missing.",
     "captionOnHome": false
   },
   "chips": [
@@ -36,12 +36,6 @@
     { "icon": "github", "alt": "Github", "href": "https://github.com/tannerorourke/pnw-outdoor-planner" },
     { "icon": "code-brackets", "text": "Install", "alt": "Install instructions", "href": "https://github.com/tannerorourke/pnw-outdoor-planner#install" }
   ],
-  "finding": {
-    "body": "The verdict is a judgment, and it still cannot rise above a floor set in code. Six hard stops are evaluated from the agents' structured signals rather than their prose, and when the synthesizer argues past one, the script lowers its verdict and logs that it did.",
-    "eyebrow": "The rule",
-    "jumpToId": "verdict",
-    "jumpToLabel": "How a verdict is made"
-  },
   "showToc": true,
   "sections": [
     { "type": "block", "id": "content-a", "body": "[!file](content-a.md)" },
