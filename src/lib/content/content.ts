@@ -9,6 +9,7 @@ import firs from "@/content/projects/firs/content.json";
 import nanous from "@/content/projects/nanous/content.json";
 import facts from "@/content/projects/facts/content.json";
 import negation from "@/content/projects/negation/content.json";
+import pnw from "@/content/projects/pnw-outdoor-planner/content.json";
 import { SectionTypes } from '@/components/ui/Section';
 import { splitMarkdownSections } from '@/lib/markdown/sections';
 
@@ -46,6 +47,7 @@ const projectList: ProjectContent[] = ([
   chronos,
   negation,
   firs,
+  pnw,
 ] as unknown as ProjectContent[])
   .map(resolveProject)
   .filter((p) => p.live)
