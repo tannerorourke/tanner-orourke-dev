@@ -1,0 +1,53 @@
+{
+  "pid": "pnw-outdoor-planner",
+  "live": true,
+  "order": 2,
+  "publishedAt": "2026-10-22",
+  "updatedAt": "2026-10-22",
+  "title": "PNW Outdoor Planner",
+  "indexSubtitle": "A Claude Code plugin that turns a pinned-down itinerary into one sourced verdict. A Go/No-Go Verdict for Cascades Trips, From Six Research Agents and Hard Stops in Code",
+  "eyebrow": "Plugin (2026)",
+  "thumbnail": {
+    "src": "/content/pnw-outdoor-planner/pipeline.svg",
+    "alt": "Pipeline from itinerary through resolver, six research agents, hard stops, synthesizer and critic to a verdict"
+  },
+
+  "category": "case-studies",
+  "tags": ["claude-code", "multi-agent", "workflow", "python", "weather", "avalanche", "plugin"],
+  "domain": ["agents", "tooling"],
+  "method": ["orchestration"],
+  "year": 2026,
+  "research_eng": 5,
+  "size": 3,
+
+  "subtitle": "A Claude Code plugin for planning backcountry trips in Washington, Oregon, Idaho, and the British Columbia.",
+  "heroImage": {
+    "src": "/content/pnw-outdoor-planner/pipeline.svg",
+    "alt": "Pipeline from itinerary through resolver, six research agents, hard stops, synthesizer and critic to a verdict",
+    "caption": "Deterministic Python solver decides per-day sources. Six agents return readings in parallel, each with a source and an as-of. Hard stops are evaluated from their structured signals and set a verdict floor. The synthesizer weighs what is left to generate a Go/No-Go verdict, and a critic sends it back once if a reading went missing.",
+    "captionOnHome": false
+  },
+  "chips": [
+    { "label": "Claude Code", "color": "teal" },
+    { "label": "Multi-agent", "color": "teal" },
+    { "label": "Python", "color": "copper" }
+  ],
+  "links": [
+    { "icon": "github", "alt": "Github", "href": "https://github.com/tannerorourke/pnw-outdoor-planner" },
+    { "icon": "code-brackets", "text": "Install", "alt": "Install instructions", "href": "https://github.com/tannerorourke/pnw-outdoor-planner#install" }
+  ],
+  "showToc": true,
+  "sections": [
+    { "type": "block", "id": "content-a", "body": "[!file](content-a.md)" },
+    {
+      "type": "Stats",
+      "id": "at-a-glance",
+      "stats": [
+        { "value": "51", "label": "catalog sources" },
+        { "value": "8", "label": "agents" },
+        { "value": "~10 min", "label": "runtime" }
+      ]
+    },
+    { "type": "block", "id": "content-b", "body": "[!file](content-b.md)" }
+  ]
+}
