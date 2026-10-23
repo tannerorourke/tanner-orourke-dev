@@ -50,9 +50,8 @@
       "id": "at-a-glance",
       "stats": [
         { "value": "51", "label": "catalog sources" },
-        { "value": "50", "label": "registered land units" },
-        { "value": "6", "label": "hard stops" },
-        { "value": "~10 min", "label": "per run" }
+        { "value": "8", "label": "agents" },
+        { "value": "~10 min", "label": "runtime" }
       ]
     },
     { "type": "block", "id": "content-b", "body": "[!file](content-b.md)" }
