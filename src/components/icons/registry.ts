@@ -18,6 +18,7 @@ import { CaretCircleDown } from "./caret-circle-down";
 // import { CaretLeft } from "./caret-left";
 // import { CaretRight } from "./caret-right";
 import { CodeBrackets } from "./code-brackets";
+import { Coffee } from "./coffee";
 import { Colab } from "./colab";
 // import { CodeFile } from "./code-file";
 // import { Download } from "./download";
@@ -45,6 +46,7 @@ export const iconRegistry = {
   "arrow-up-right": ArrowUpRight,
   "caret-circle-down": CaretCircleDown,
   "code-brackets": CodeBrackets,
+  "coffee": Coffee,
   "colab": Colab,
   "envelope": Envelope,
   "file-text": FileText,
