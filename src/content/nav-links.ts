@@ -64,6 +64,14 @@ export const LINKS: Record<string, NavLink> = {
     href: "mailto:tannero@live.com?subject=Reaching%20out",
     tooltipText: "Email me"
   },
+  booking: {
+    type: "link",
+    iconName: "coffee",
+    text: "Meet for coffee", alt: "Book a coffee chat",
+    href: "https://cal.com/tanner-orourke",
+    target: "_blank",
+    tooltipText: "Meet for coffee"
+  },
   cv: {
     type: "link-cv",
     iconName: "file-text", 
@@ -98,7 +106,7 @@ export const LINKS: Record<string, NavLink> = {
 export type SiteLinkKey = keyof typeof LINKS
 
 export const CONTACT_LINKS: (SiteLinkKey)[] = 
-  ["email", "linkedin", "github", "cv"];
+  ["email", "booking", "linkedin", "github", "cv"];
 
 export const NAV_LINKS: (SiteLinkKey)[] = 
   ["about", "mywork"];

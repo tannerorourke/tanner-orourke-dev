@@ -6,6 +6,8 @@ import rehypeKatex from 'rehype-katex';
 import rehypeRaw from 'rehype-raw';
 import remarkMath from 'remark-math';
 
+import DrawerLink from '@/components/navigation/DrawerLink';
+import type { DrawerId } from '@/components/providers/DrawerProvider';
 import Text, { type TextProps } from '@/components/ui/Text';
 import { type TextVariant } from '@/lib/theme/typography.css';
 
@@ -38,11 +40,21 @@ const Heading = (tag: HeadingTag) =>
     return <Text id={`section-${id}`} as={tag} variant={HEADING_VARIANT[tag]}>{children}</Text>;
   };
 
+// -- an in-site href whose 'view' names a header drawer opens that drawer, whatever its path
+function drawerOf(href: string): DrawerId | null {
+  if (!/^[/?]/.test(href)) return null;
+  const view = new URLSearchParams(href.split('#')[0].split('?')[1]).get('view');
+  return view === 'work' || view === 'contact' ? view : null;
+}
+
 // Make links work with Next.js primitives
 const Link = (cls = '') =>
   function node({ href, children }: ComponentProps<'a'>) {
-    if (!href) 
+    if (!href)
       return <>{children}</>;
+    const drawer = drawerOf(href);
+    if (drawer)
+      return <DrawerLink className={cls} drawer={drawer} href={href}>{children}</DrawerLink>;
     if (href.startsWith('/'))
       return <NextLink className={cls} href={href}>{children}</NextLink>;
     if (href.startsWith('#'))
